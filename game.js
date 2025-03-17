@@ -58,6 +58,15 @@ function playGame() {
         console.log(`Computer's score:${computerScore}`);
         console.log(`Your score:${humanScore}`);
     }
+    let matchResult;
+    if (humanScore > computerScore){
+        matchResult = "You won the match!";
+    } else if (humanScore < computerScore) {
+        matchResult = "You lost the match!";
+    } else {
+        matchResult = "It's a draw!";
+    }
+    return console.log(matchResult);
 }
 
 console.log(playGame());
