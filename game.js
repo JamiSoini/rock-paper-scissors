@@ -60,9 +60,15 @@ const getRoundResult = function() {
 
 const finishMatch = function() {
     if (humanScore === 5) {
-            return displayFinalResult.textContent =`You won the match! ${humanScore}, ${computerScore}`;
+            rockButton.setAttribute('disabled', '');
+            paperButton.setAttribute('disabled', '');
+            scissorsButton.setAttribute('disabled', '');
+            return displayFinalResult.textContent =`You won the match! ${humanScore} | ${computerScore}`;
         } else if (computerScore === 5) {
-            return displayFinalResult.textContent =`You lost the match... ${humanScore}, ${computerScore}`;
+            rockButton.setAttribute('disabled', '');
+            paperButton.setAttribute('disabled', '');
+            scissorsButton.setAttribute('disabled', '');
+            return displayFinalResult.textContent =`You lost the match... ${humanScore} | ${computerScore}`;
         } else {
             return displayFinalResult.textContent = "";
         };
