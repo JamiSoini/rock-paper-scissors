@@ -106,25 +106,3 @@ container.appendChild(displayResult);
 container.appendChild(displayScore);
 container.appendChild(displayFinalResult);
 document.body.appendChild(container);
-
-// old console version game function saved for learning purposes
-/*function playGame() {
-    for (let i = 0; i < 5; i++) {
-        const humanSelection = getHumanChoise();
-        const computerSelection = getComputerChoise();
-        console.log(computerSelection);
-        console.log(humanSelection);
-        playRound(humanSelection, computerSelection);
-        console.log(`Computer's score:${computerScore}`);
-        console.log(`Your score:${humanScore}`);
-    }
-    let matchResult;
-    if (humanScore > computerScore){
-        matchResult = "You won the match!";
-    } else if (humanScore < computerScore) {
-        matchResult = "You lost the match!";
-    } else {
-        matchResult = "It's a draw!";
-    }
-    return console.log(matchResult);
-}*/
