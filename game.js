@@ -9,46 +9,100 @@ function getComputerChoise() {
     }
 }
 
-function getHumanChoise() {
-    let choise = prompt("Choose! rock, paper or scissors:");
-    choise = choise.toLowerCase();
-    if (choise === "rock") {
-        return "rock";
-    } else if (choise === "paper") {
-        return "paper";
-    } else {
-        return "scissors";
-    }
-}
-
 let humanScore = 0;
 let computerScore = 0;
+let roundResult = "";
 
 function playRound(humanChoise, computerChoise) {
     if (humanChoise === "paper" && computerChoise === "rock") {
         humanScore ++;
-        return console.log("You win!");
+        return roundResult = "win";
     } else if (humanChoise === "paper" && computerChoise === "scissors") {
         computerScore ++;
-        return console.log("You lose! ;(");
+        return roundResult = "lose";
     } else if (humanChoise === "rock" && computerChoise === "scissors") {
         humanScore ++;
-        return console.log("You win!");
+        return roundResult = "win";
     } else if (humanChoise === "rock" && computerChoise === "paper") {
         computerScore ++;
-        return console.log("You lose! ;(");
+        return roundResult = "lose";
     } else if (humanChoise === "scissors" && computerChoise === "paper") {
         humanScore ++;
-        return console.log("You win!");
+        return roundResult = "win";
     } else if (humanChoise === "scissors" && computerChoise === "rock") {
         computerScore ++;
-        return console.log("You lose! ;(");
+        return roundResult = "lose";
     } else {
-        return console.log("It's a draw!");
+        return roundResult = "draw";
     }
 }
 
-function playGame() {
+const container = document.createElement("div");
+const displayResult = document.createElement("p");
+displayResult.textContent = "Round result: ";
+const displayScore = document.createElement("p");
+displayScore.textContent = "Score is: ";
+const displayFinalResult = document.createElement("p");
+displayFinalResult.textContent = "";
+
+const getRoundResult = function() {
+    if (roundResult === "win") {
+        displayResult.textContent = "You won a round!";
+        displayScore.textContent = `Score is: ${humanScore} | ${computerScore}`;
+    } else if (roundResult === "lose") {
+        displayResult.textContent = "You lost a round";
+        displayScore.textContent = `Score is: ${humanScore} | ${computerScore}`;
+    } else {
+        displayResult.textContent = "It's a draw";
+        displayScore.textContent = `Score is: ${humanScore} | ${computerScore}`;
+    }
+};
+
+const finishMatch = function() {
+    if (humanScore === 5) {
+            return displayFinalResult.textContent =`You won the match! ${humanScore}, ${computerScore}`;
+        } else if (computerScore === 5) {
+            return displayFinalResult.textContent =`You lost the match... ${humanScore}, ${computerScore}`;
+        } else {
+            return displayFinalResult.textContent = "";
+        };
+};
+
+const rockButton = document.createElement("BUTTON");
+rockButton.textContent = "Rock!";
+rockButton.addEventListener("click", (e) => {
+    humanChoise = "rock";
+    playRound(humanChoise, getComputerChoise());
+    getRoundResult();
+    finishMatch();
+});
+const paperButton = document.createElement("BUTTON");
+paperButton.textContent = "Paper!";
+paperButton.addEventListener("click", (e) => {
+    humanChoise = "paper";
+    playRound(humanChoise, getComputerChoise());
+    getRoundResult();
+    finishMatch();
+});
+const scissorsButton = document.createElement("BUTTON");
+scissorsButton.textContent = "Scissors!";
+scissorsButton.addEventListener("click", (e) => {
+    humanChoise = "scissors";
+    playRound(humanChoise, getComputerChoise());
+    getRoundResult();
+    finishMatch();
+});
+
+container.appendChild(rockButton);
+container.appendChild(paperButton);
+container.appendChild(scissorsButton);
+container.appendChild(displayResult);
+container.appendChild(displayScore);
+container.appendChild(displayFinalResult);
+document.body.appendChild(container);
+
+// old console version game function saved for learning purposes
+/*function playGame() {
     for (let i = 0; i < 5; i++) {
         const humanSelection = getHumanChoise();
         const computerSelection = getComputerChoise();
@@ -67,6 +121,4 @@ function playGame() {
         matchResult = "It's a draw!";
     }
     return console.log(matchResult);
-}
-
-console.log(playGame());
+}*/
